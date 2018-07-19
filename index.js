@@ -14,7 +14,8 @@ app.use(bodyParser.json())
 app.post('/webhook', (req, res) => {
     let reply_token = req.body.events[0].replyToken
     let msg = req.body.events[0].message.text
-    seperateMessageType(reply_token, req)
+    reply(reply_token, JSON.stringify(req.body))
+
     res.sendStatus(200)
 })
 app.listen(port)
