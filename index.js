@@ -14,12 +14,7 @@ app.use(bodyParser.json())
 app.post('/webhook', (req, res) => {
     let reply_token = req.body.events[0].replyToken
     let msg = req.body.events[0].message.text
-    // reply(reply_token, "-1-")
-    // reply(reply_token, req.body.events[0].message.msgType)
-    // reply(reply_token, "-2-")
     reply(reply_token, JSON.stringify(req.body))
-    // reply(reply_token, "-3-")
-    // reply(reply_token, req)
 
     res.sendStatus(200)
 })
@@ -41,5 +36,27 @@ function reply(reply_token, msg) {
         console.log('status = ' + res.statusCode);
     });
 }
+
+
+function seperateMessageType(req) {
+    let messageType = req.body.events[0].message.type
+    switch(messageType){
+        case "text":
+        reply(reply_token, "1." + messageType)
+        break;
+        case "image":
+        reply(reply_token, "2." + messageType)
+        break;
+        case "sticker":
+        reply(reply_token, "3." + messageType)
+        break;
+        case "location"
+        reply(reply_token, "4." + messageType)
+        break;
+        default://audio
+        reply(reply_token, "5." + messageType)
+        break;
+    }
+} 
 
 
