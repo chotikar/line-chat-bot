@@ -10,29 +10,28 @@ app.post('/webhook', (req, res) => {
     reply(reply_token)
     res.sendStatus(200)
 })
-// app.post('/webhook', (req, res) => res.sendStatus(200))
 app.listen(port)
-// function reply(reply_token) {
-//     let headers = {
-//         'Content-Type': 'application/json',
-//         'Authorization': 'Bearer OXFKQOlc4tKKxW6PPX8dFZCJa5bzfeE8BhtVjNzsppgHbnfWyPP6y3FGPfsrxDb5BqXpTC6HriZPJa77foj5wICauaoTexnfvX3DNVSnj99kFgHgTbwBHKgWsuWET0ln0R27DnP3Hin+vZx9wwqr0QdB04t89/1O/w1cDnyilFU='
-//     }
-//     let body = JSON.stringify({
-//         replyToken: reply_token,
-//         messages: [{
-//             type: 'text',
-//             text: 'Hello'
-//         },
-//         {
-//             type: 'text',
-//             text: 'How are you?'
-//         }]
-//     })
-//     request.post({
-//         url: 'https://api.line.me/v2/bot/message/reply',
-//         headers: headers,
-//         body: body
-//     }, (err, res, body) => {
-//         console.log('status = ' + res.statusCode);
-//     });
-// }
+function reply(reply_token) {
+    let headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer OXFKQOlc4tKKxW6PPX8dFZCJa5bzfeE8BhtVjNzsppgHbnfWyPP6y3FGPfsrxDb5BqXpTC6HriZPJa77foj5wICauaoTexnfvX3DNVSnj99kFgHgTbwBHKgWsuWET0ln0R27DnP3Hin+vZx9wwqr0QdB04t89/1O/w1cDnyilFU='
+    }
+    let body = JSON.stringify({
+        replyToken: reply_token,
+        messages: [{
+            type: 'text',
+            text: 'Hello'
+        },
+        {
+            type: 'text',
+            text: 'How are you?'
+        }]
+    })
+    request.post({
+        url: 'https://api.line.me/v2/bot/message/reply',
+        headers: headers,
+        body: body
+    }, (err, res, body) => {
+        console.log('status = ' + res.statusCode);
+    });
+}
