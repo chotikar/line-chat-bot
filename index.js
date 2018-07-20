@@ -18,16 +18,28 @@ function reply(reply_token, msg,req) {
     let eventtype = req.body.events[0].type
     let sourcetype = req.body.events[0].source.type
     let replytoken = req.body.events[0].replyToken
-    if (eventtype == "join" || eventtype == "message") {
+    if (eventtype == "join") {
+        requestJoin(req)
+    } else if (eventtype == "message") {
         requestMessage(req)
-    } 
+    }
 }
 
+function requestJoin(req) {
+    let body = JSON.stringify(req.body.events[0])
+    request.post({
+        url: 'http://203.154.57.171:83/line/message',
+        headers: {'Content-Type': 'application/json'},
+        body: body
+    }, (err, res, body) => {
+        console.log('status = ' + res.statusCode);
+    });
+}
 
 function requestMessage(req) {
     let body = JSON.stringify(req.body.events[0])
     request.post({
-        url: 'http://203.154.57.171/line/message',
+        url: 'http://203.154.57.171:83/line/command',
         headers: {'Content-Type': 'application/json'},
         body: body
     }, (err, res, body) => {
