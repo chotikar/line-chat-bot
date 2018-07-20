@@ -23,11 +23,7 @@ function reply(reply_token, msg,req) {
     let eventtype = req.body.events[0].type
     let sourcetype = req.body.events[0].source.type
     let replytoken = req.body.events[0].replyToken
-    // if ((eventtype == "join" && (sourceType == "group" || sourceType == "room")) || (eventtype == "message" && sourceType == "user"){
-    //     status = "true"
-    // } 
-     if ((eventtype == "join" && (sourcetype == "group" || sourcetype == "room")) || (eventtype == "message" && sourcetype == "user")) {
-        status = "truee"
+    if ((eventtype == "join" && (sourcetype == "group" || sourcetype == "room")) || (eventtype == "message" && sourcetype == "user")) {
     } 
 
     let body = JSON.stringify({
@@ -48,14 +44,14 @@ function reply(reply_token, msg,req) {
 
 
 function requestMessage(req) {
-     // let body = JSON.stringify({req.body.events[0]})
-    //  request.post({
-    //     url: 'http://203.154.57.171/line/message',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: body
-    // }, (err, res, body) => {
-    //     console.log('status = ' + res.statusCode);
-    // });
+    let body = JSON.stringify({req.body.events[0]})
+    request.post({
+        url: 'http://203.154.57.171/line/message',
+        headers: { 'Content-Type': 'application/json' },
+        body: body
+    }, (err, res, body) => {
+        console.log('status = ' + res.statusCode);
+    });
 }
 
 // 
