@@ -24,23 +24,23 @@ function reply(reply_token, msg,req) {
     let sourcetype = req.body.events[0].source.type
     let replytoken = req.body.events[0].replyToken
     if (eventtype == "join" || eventtype == "message") {
-        status = "true"
+        requestMessage(req)
     } 
 
-    let body = JSON.stringify({
-        replyToken: reply_token,
-        messages: [{
-            type: 'text',
-            text: status + msg
-        }]
-    })
-    request.post({
-        url: 'https://api.line.me/v2/bot/message/reply',
-        headers: headers,
-        body: body
-    }, (err, res, body) => {
-        console.log('status = ' + res.statusCode);
-    });
+    // let body = JSON.stringify({
+    //     replyToken: reply_token,
+    //     messages: [{
+    //         type: 'text',
+    //         text: status + msg
+    //     }]
+    // })
+    // request.post({
+    //     url: 'https://api.line.me/v2/bot/message/reply',
+    //     headers: headers,
+    //     body: body
+    // }, (err, res, body) => {
+    //     console.log('status = ' + res.statusCode);
+    // });
 }
 
 
