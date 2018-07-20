@@ -19,12 +19,12 @@ app.post('/webhook', (req, res) => {
 })
 app.listen(port)
 function reply(reply_token, msg,req) {
-    var status = 'false'
+    var status = "false"
     let eventtype = req.body.events[0].type
     let sourcetype = req.body.events[0].source.type
     let replytoken = req.body.events[0].replyToken
     if ((eventtype == "join" && (sourceType == "group" || sourceType == "room")) || (eventtype == "message" && sourceType == "user"){
-        status = 'true'
+        status = "true"
     } 
 
     let body = JSON.stringify({
