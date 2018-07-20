@@ -4,11 +4,6 @@ const request = require('request')
 const app = express()
 const port = process.env.PORT || 4000
 
-let headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer OXFKQOlc4tKKxW6PPX8dFZCJa5bzfeE8BhtVjNzsppgHbnfWyPP6y3FGPfsrxDb5BqXpTC6HriZPJa77foj5wICauaoTexnfvX3DNVSnj99kFgHgTbwBHKgWsuWET0ln0R27DnP3Hin+vZx9wwqr0QdB04t89/1O/w1cDnyilFU='
-    }
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.post('/webhook', (req, res) => {
@@ -26,23 +21,7 @@ function reply(reply_token, msg,req) {
     if (eventtype == "join" || eventtype == "message") {
         requestMessage(req)
     } 
-
-    // let body = JSON.stringify({
-    //     replyToken: reply_token,
-    //     messages: [{
-    //         type: 'text',
-    //         text: status + msg
-    //     }]
-    // })
-    // request.post({
-    //     url: 'https://api.line.me/v2/bot/message/reply',
-    //     headers: headers,
-    //     body: body
-    // }, (err, res, body) => {
-    //     console.log('status = ' + res.statusCode);
-    // });
 }
-
 
 function requestMessage(req) {
     let body = JSON.stringify(req.body.events[0])
