@@ -23,6 +23,7 @@ function reply(reply_token, msg,req) {
     } 
 }
 
+
 function requestMessage(req) {
     let body = JSON.stringify(req.body.events[0])
     request.post({
