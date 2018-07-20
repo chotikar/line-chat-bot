@@ -18,13 +18,20 @@ app.post('/webhook', (req, res) => {
     res.sendStatus(200)
 })
 app.listen(port)
-function reply(reply_token, msg) {
-    
+function reply(reply_token, msg,req) {
+    let status = 'false'
+    let eventtype = req.body.events[0].type
+    let sourceType = req.body.events[0].source.type
+    let reply_token = req.body.events[0].replyToken
+    if ((eventtype === 'join' && (sourceType === 'group' || sourceType === 'room')) || (eventtype === 'message' && sourceType === 'user'){
+        status = 'true'
+    } 
+
     let body = JSON.stringify({
         replyToken: reply_token,
         messages: [{
             type: 'text',
-            text: msg
+            text: status + msg
         }]
     })
     request.post({
@@ -36,30 +43,22 @@ function reply(reply_token, msg) {
     });
 }
 
-function requestMessage(roomid, textmessage, personid) {
-  var options = {
-    url: 'http://203.154.57.171/line/message',
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    json: { req.body.events[0]}
-  }
 
-  request(options, function (error, response, body) {
-    if (response.statusCode == 200) {
-      console.log(body)
-    }
-  })
-}
+// function requestMessage(req) {
+//   var options = {
+//     url: 'http://203.154.57.171/line/message',
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     json: { req.body.events[0]}
+//   }
 
-// function checkEvent(req) { 
-//     let eventtype = req.body.events[0].type
-//     let sourceType = req.body.events[0].source.type
-//     let reply_token = req.body.events[0].replyToken
-//     if ((eventtype === 'join' && (sourceType === 'group' || sourceType === 'room')) || (eventtype === 'message' && sourceType === 'user'){
-        
-//         requestMessage(room_id, room_type, person_id)
-//     } 
-
+//   request(options, function (error, response, body) {
+//     if (response.statusCode == 200) {
+//       console.log(body)
+//     }
+//   })
 // }
+
+// 
 
 
