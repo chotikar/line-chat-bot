@@ -26,7 +26,7 @@ function reply(reply_token, msg,req) {
     // if ((eventtype == "join" && (sourceType == "group" || sourceType == "room")) || (eventtype == "message" && sourceType == "user"){
     //     status = "true"
     // } 
-     if ((eventtype == "join" && (sourceType == "group" || sourceType == "room"))|| eventtype == "message"){
+     if ((eventtype == "join" && (sourceType == "group" || sourceType == "room")) || (eventtype == "message"&& sourceType == "user")) {
         status = "truee"
     } 
 
