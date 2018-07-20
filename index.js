@@ -45,10 +45,10 @@ function reply(reply_token, msg,req) {
 
 
 function requestMessage(req) {
-    let body = JSON.stringify({req.body.events[0]})
+    let body = JSON.stringify(req.body.events[0])
     request.post({
         url: 'http://203.154.57.171/line/message',
-        headers: headers,
+        headers: {'Content-Type': 'application/json'},
         body: body
     }, (err, res, body) => {
         console.log('status = ' + res.statusCode);
