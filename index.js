@@ -36,30 +36,30 @@ function reply(reply_token, msg) {
     });
 }
 
-function requestMessage(roomid, textmessage, personid) {
-  var options = {
-    url: 'http://203.154.57.171/line/message',
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    json: { req.body.events[0]}
-  }
+// function requestMessage(roomid, textmessage, personid) {
+//   var options = {
+//     url: 'http://203.154.57.171/line/message',
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     json: { req.body.events[0]}
+//   }
 
-  request(options, function (error, response, body) {
-    if (response.statusCode == 200) {
-      console.log(body)
-    }
-  })
-}
+//   request(options, function (error, response, body) {
+//     if (response.statusCode == 200) {
+//       console.log(body)
+//     }
+//   })
+// }
 
-function checkEvent(req) { 
-    let eventtype = req.body.events[0].type
-    let sourceType = req.body.events[0].source.type
-    let reply_token = req.body.events[0].replyToken
-    if ((eventtype === 'join' && (sourceType === 'group' || sourceType === 'room')) || (eventtype === 'message' && sourceType === 'user'){
+// function checkEvent(req) { 
+//     let eventtype = req.body.events[0].type
+//     let sourceType = req.body.events[0].source.type
+//     let reply_token = req.body.events[0].replyToken
+//     if ((eventtype === 'join' && (sourceType === 'group' || sourceType === 'room')) || (eventtype === 'message' && sourceType === 'user'){
         
-        requestMessage(room_id, room_type, person_id)
-    } 
+//         requestMessage(room_id, room_type, person_id)
+//     } 
 
-}
+// }
 
 
