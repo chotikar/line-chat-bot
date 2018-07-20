@@ -19,7 +19,7 @@ app.post('/webhook', (req, res) => {
 })
 app.listen(port)
 function reply(reply_token, msg,req) {
-    status = "false"
+    let status = "false"
     let eventtype = req.body.events[0].type
     let sourcetype = req.body.events[0].source.type
     let replytoken = req.body.events[0].replyToken
@@ -45,12 +45,11 @@ function reply(reply_token, msg,req) {
 
 
 function requestMessage(req) {
-    // let bodyrequestMessage = JSON.stringify({req.body.events[0]})
-    // request.post({
-    //     url: 'http://203.154.57.171/line/message',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: bodyrequestMessage
-    // }, (err, res, body) => {
-    //     console.log('status = ' + res.statusCode);
-    // });
+    request.post({
+        url: 'http://203.154.57.171/line/message',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({req.body.events[0]})
+    }, (err, res, body) => {
+        console.log('status = ' + res.statusCode);
+    });
 }
