@@ -19,7 +19,7 @@ app.post('/webhook', (req, res) => {
 })
 app.listen(port)
 function reply(reply_token, msg,req) {
-    let status = 'false'
+    var status = 'false'
     let eventtype = req.body.events[0].type
     let sourceType = req.body.events[0].source.type
     let reply_token = req.body.events[0].replyToken
