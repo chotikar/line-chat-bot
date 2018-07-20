@@ -28,7 +28,7 @@ function reply(reply_token, msg,req) {
 function requestJoin(req) {
     let body = JSON.stringify(req.body.events[0])
     request.post({
-        url: 'http://203.154.57.171:83/line/message',
+        url: 'http://203.154.57.171:83/line/command',
         headers: {'Content-Type': 'application/json'},
         body: body
     }, (err, res, body) => {
@@ -39,7 +39,7 @@ function requestJoin(req) {
 function requestMessage(req) {
     let body = JSON.stringify(req.body.events[0])
     request.post({
-        url: 'http://203.154.57.171:83/line/command',
+        url: 'http://203.154.57.171:83/line/message',
         headers: {'Content-Type': 'application/json'},
         body: body
     }, (err, res, body) => {
