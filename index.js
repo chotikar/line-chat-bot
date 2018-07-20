@@ -23,9 +23,9 @@ function reply(reply_token, msg,req) {
     let eventtype = req.body.events[0].type
     let sourcetype = req.body.events[0].source.type
     let replytoken = req.body.events[0].replyToken
-    if ((eventtype == "join" && (sourceType == "group" || sourceType == "room")) || (eventtype == "message" && sourceType == "user"){
-        status = "true"
-    } 
+    // if ((eventtype == "join" && (sourceType == "group" || sourceType == "room")) || (eventtype == "message" && sourceType == "user"){
+    //     status = "true"
+    // } 
 
     let body = JSON.stringify({
         replyToken: reply_token,
