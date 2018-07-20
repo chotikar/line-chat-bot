@@ -19,12 +19,12 @@ app.post('/webhook', (req, res) => {
 })
 app.listen(port)
 function reply(reply_token, msg,req) {
-    var status = "false"
+    status = "false"
     let eventtype = req.body.events[0].type
     let sourcetype = req.body.events[0].source.type
     let replytoken = req.body.events[0].replyToken
     // if ((eventtype == "join" && (sourceType == "group" || sourceType == "room")) || (eventtype == "message" && sourceType == "user"){
-    //     status = "true"
+        status = "true"
     // } 
 
     let body = JSON.stringify({
@@ -45,7 +45,7 @@ function reply(reply_token, msg,req) {
 
 
 function requestMessage(req) {
-     let body = JSON.stringify({req.body.events[0]})
+     // let body = JSON.stringify({req.body.events[0]})
     //  request.post({
     //     url: 'http://203.154.57.171/line/message',
     //     headers: { 'Content-Type': 'application/json' },
